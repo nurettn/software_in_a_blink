@@ -52,6 +52,7 @@ def main():
             f'date = "{dt.date().isoformat()}"',
             f'filterDate = "{dt.date().isoformat()}"',
             f'url = "/{dt.date().isoformat()}/"',
+            'outputs = ["HTML", "RSS"]',
             "+++",
             "",
             f"This page lists posts published on {dt.date().isoformat()}.",
