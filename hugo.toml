@@ -1,8 +1,0 @@
-theme = "PaperMod"
-baseURL = "https://nurettn.github.io/software_in_a_blink/"
-languageCode = "en-us"
-title = "Blog posts"
-
-[caches]
-  [caches.images]
-    dir = ':cacheDir/images'
