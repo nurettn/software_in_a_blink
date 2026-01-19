@@ -1,0 +1,38 @@
+{{- define "main" }}
+{{- $target := .Params.filterDate }}
+{{- $pages := where site.RegularPages "Section" "posts" }}
+{{- $scratch := newScratch }}
+{{- $scratch.Set "matched" false }}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title entry-hint-parent">
+      {{ .Title }}
+    </h1>
+    {{- if $target }}
+    <div class="post-meta">
+      <span>{{ $target }}</span>
+    </div>
+    {{- end }}
+  </header>
+
+  <div class="post-content">
+    <ul>
+      {{- range $pages }}
+        {{- if and $target (eq (.Date | time.Format "2006-01-02") $target) }}
+          {{- $scratch.Set "matched" true }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{- end }}
+      {{- end }}
+    </ul>
+
+    {{- if not ($scratch.Get "matched") }}
+      <p>No posts found for this date.</p>
+    {{- end }}
+  </div>
+</article>
+
+{{- end }}
